@@ -63,10 +63,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BookEntity.cs" />
+    <Compile Include="DataBase\BookRepository.cs" />
+    <Compile Include="DataBase\ExtraditionRepository.cs" />
+    <Compile Include="DataBase\IBaseRepository.cs" />
+    <Compile Include="DataBase\ReadersRepository.cs" />
     <Compile Include="ExtraditionEntity.cs" />
     <Compile Include="Context.cs" />
+    <Compile Include="Mappers\BookMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadersEntity.cs" />
+    <Compile Include="Repository\BookRepository.cs" />
+    <Compile Include="ViewModels\BookViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

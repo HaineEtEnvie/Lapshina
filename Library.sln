@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "Library\Library.csproj", "{B1A79769-F62A-4AAE-9426-2E02606877C4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9FDDA553-2817-4A45-876B-7F6FD210E3D0} = {9FDDA553-2817-4A45-876B-7F6FD210E3D0}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Infrastructure", "Library.Infrastructure\Library.Infrastructure.csproj", "{9FDDA553-2817-4A45-876B-7F6FD210E3D0}"
 EndProject

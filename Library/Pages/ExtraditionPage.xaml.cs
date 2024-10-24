@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Library.Windows
+namespace Library.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для AuthWindow.xaml
+    /// Логика взаимодействия для ExtraditionPage.xaml
     /// </summary>
-    public partial class AuthWindow : Window
+    public partial class ExtraditionPage : Page
     {
-        public AuthWindow()
+        public ExtraditionPage()
         {
             InitializeComponent();
         }

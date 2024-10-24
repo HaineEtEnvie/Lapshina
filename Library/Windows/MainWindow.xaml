@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Source="/Pages/MenuPage.xaml"/>
+        <StackPanel Orientation="Horizontal" Width="800" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Label VerticalContentAlignment="Top" Padding="15" FontFamily="Arial" FontSize="14 " Width="170"/>
+        </StackPanel>
     </Grid>
 </Window>
