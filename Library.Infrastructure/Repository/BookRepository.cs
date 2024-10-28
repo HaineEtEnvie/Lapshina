@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Library.Infrastructure.ViewModels;
+using Library.Infrastructure.Mappers;
 using static Library.Infrastructure.Mappers.BookMapper;
 
 namespace Library.Infrastructure.Repository
@@ -15,7 +16,7 @@ namespace Library.Infrastructure.Repository
             using (var context = new Context())
             {
                 var items = context.Book.ToList();
-                return ExampleMapper.Map(items);
+                return BookMapper.Map(items);
             }
         }
 

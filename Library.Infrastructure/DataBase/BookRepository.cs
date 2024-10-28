@@ -3,30 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Library.Infrastructure.ViewModels;
+using Library.Infrastructure.Mappers;
 
 namespace Library.Infrastructure.DataBase
 {
-    internal class BookRepository
+    public class BookRepository
     {
-        public List<BookEntity> GetList()
+        public List<BookViewModel> GetList()
         {
             using (var context = new Context())
             {
                 var items = context.Book.ToList();
-                return items;
+                return BookMapper.Map(items);
             }
 
         }
-        public BookEntity GetById(long id)
+        public BookViewModel GetById(long id)
         {
             using (var context = new Context())
             {
                 var item = context.Book.FirstOrDefault(x => x.id == id);
-                return item;
+                return BookMapper.Map(item);
             }
         }
-
-
     }
 }

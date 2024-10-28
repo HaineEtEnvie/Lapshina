@@ -6,9 +6,33 @@
       xmlns:local="clr-namespace:Library.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ReadersPage">
+      Title="Читатели">
 
-    <Grid>
-        
-    </Grid>
+    <DockPanel Width="750" Height="434">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="85*"/>
+                <RowDefinition Height="60*"/>
+                <RowDefinition Height="72*"/>
+                <RowDefinition Height="72*"/>
+                <RowDefinition Height="72*"/>
+                <RowDefinition Height="72*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3.5*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <DataGrid Grid.Column="0" FontFamily="Arial" FontSize="14" VerticalContentAlignment="Bottom" Grid.Row="2" Grid.RowSpan="4"  CanUserResizeColumns="False" CanUserResizeRows="False" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" AutoGenerateColumns="False" CanUserReorderColumns="False"  x:Name="ReadersGrid" Margin="0,10,0,0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="30" FontSize="14" FontFamily="Arial" x:Name="ID" Header="ID" Binding="{Binding id}" Visibility="Hidden" IsReadOnly="True"/>
+                    <DataGridTextColumn  Width="*" FontSize="14" FontFamily="Arial"  x:Name="Firstname" Header="Название" Binding="{Binding firstname}" IsReadOnly="True"/>
+                    <DataGridTextColumn  Width="*" FontSize="14" FontFamily="Arial"  x:Name="Secondname" Header="Издательство" Binding="{Binding secondname}" IsReadOnly="True"/>
+                    <DataGridTextColumn  Width="*" FontSize="14" FontFamily="Arial"  x:Name="Lastname" Header="Жанр" Binding="{Binding lastname}" IsReadOnly="True"/>
+                    <DataGridTextColumn  Width="*" FontSize="14" FontFamily="Arial"  x:Name="Phonenumber" Header="Фамилия" Binding="{Binding phonenumber}" IsReadOnly="True"/>
+                    <DataGridTextColumn  Width="*" FontSize="14" FontFamily="Arial"  x:Name="Adress" Header="Имя" Binding="{Binding adress}" IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </DockPanel>
 </Page>

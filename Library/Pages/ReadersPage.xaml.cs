@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library.Infrastructure.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,13 @@ namespace Library.Pages
     /// </summary>
     public partial class ReadersPage : Page
     {
+        private ReadersRepository _repository;
         public ReadersPage()
         {
             InitializeComponent();
+            _repository = new ReadersRepository();
+            ReadersGrid.ItemsSource = _repository.GetList();
+
         }
     }
 }
