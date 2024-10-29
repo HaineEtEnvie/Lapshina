@@ -14,9 +14,7 @@ namespace Library.Infrastructure.Mappers
             var viewModel = new ReadersViewModel
             {
                 id = entity.id,
-                firstname = entity.firstname,
-                secondname = entity.secondname,
-                lastname = entity.lastname,
+                fullname = entity.fullname,
                 phonenumber = entity.phonenumber,
                 adress = entity.adress,
             };
@@ -33,9 +31,7 @@ namespace Library.Infrastructure.Mappers
             var entity = new ReadersEntity
             {
                 id = viewModel.id,
-                firstname = viewModel.firstname,
-                secondname = viewModel.secondname,
-                lastname = viewModel.lastname,
+                fullname = viewModel.fullname,
                 phonenumber = viewModel.phonenumber,
                 adress = viewModel.adress,
             };

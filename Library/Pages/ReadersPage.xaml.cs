@@ -1,5 +1,4 @@
-﻿using Library.Infrastructure.Repository;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Library.Infrastructure.DataBase;
 
 namespace Library.Pages
 {
@@ -26,8 +26,11 @@ namespace Library.Pages
         {
             InitializeComponent();
             _repository = new ReadersRepository();
+            UpdateGrid();
+        }
+        public void UpdateGrid() // обновление DataGrid в соответствии с бд
+        {
             ReadersGrid.ItemsSource = _repository.GetList();
-
         }
     }
 }

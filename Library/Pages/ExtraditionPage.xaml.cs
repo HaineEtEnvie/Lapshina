@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library.Infrastructure.DataBase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,18 @@ namespace Library.Pages
     /// </summary>
     public partial class ExtraditionPage : Page
     {
+        private ExtraditionRepository _repository;
         public ExtraditionPage()
         {
             InitializeComponent();
+            _repository = new ExtraditionRepository();
+            UpdateGrid();
+
+        }
+
+        public void UpdateGrid() // обновление DataGrid в соответствии с бд
+        {
+            ExtraditionGrid.ItemsSource = _repository.GetList();
         }
     }
 }

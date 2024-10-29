@@ -4,6 +4,13 @@
              xmlns:local="clr-namespace:Library"
              StartupUri="Windows/MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="Style2Btn" TargetType="Button">
+            <Setter Property="Control.Foreground" Value="Black" />
+            <Setter Property="Control.Background" Value="Orange" />
+        </Style>
+        <Style x:Key="Style2DataGrid" TargetType="DataGrid">
+            <Setter Property="Control.Foreground" Value="Black" />
+            <Setter Property="Control.Background" Value="Orange" />
+        </Style>
     </Application.Resources>
 </Application>

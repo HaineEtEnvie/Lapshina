@@ -27,13 +27,7 @@ namespace Library.Infrastructure
         public string genre { get; set; }
 
         [StringLength(2147483647)]
-        public string writerfirstname { get; set; }
-
-        [StringLength(2147483647)]
-        public string writesecondrname { get; set; }
-
-        [StringLength(2147483647)]
-        public string writerlastname { get; set; }
+        public string writerfullname { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ExtraditionEntity> Extradition { get; set; }

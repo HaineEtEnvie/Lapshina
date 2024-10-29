@@ -17,9 +17,7 @@ namespace Library.Infrastructure.Mappers
                 name = entity.name,
                 publishinghouse = entity.publishinghouse,
                 genre = entity.genre,
-                writerfirstname = entity.writerfirstname,
-                writesecondrname = entity.writesecondrname,
-                writerlastname = entity.writerlastname,
+                writerfullname = entity.writerfullname,
             };
             return viewModel;
         }
@@ -37,9 +35,7 @@ namespace Library.Infrastructure.Mappers
                 name = viewModel.name,
                 publishinghouse = viewModel.publishinghouse,
                 genre = viewModel.genre,
-                writerfirstname = viewModel.writerfirstname,
-                writesecondrname = viewModel.writesecondrname,
-                writerlastname = viewModel.writerlastname,
+                writerfullname = viewModel.writerfullname,
             };
             return entity;
         }

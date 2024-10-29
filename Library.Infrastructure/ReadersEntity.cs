@@ -19,15 +19,7 @@ namespace Library.Infrastructure
 
         [Required]
         [StringLength(2147483647)]
-        public string firstname { get; set; }
-
-        [Required]
-        [StringLength(2147483647)]
-        public string secondname { get; set; }
-
-        [Required]
-        [StringLength(2147483647)]
-        public string lastname { get; set; }
+        public string fullname { get; set; }
 
         [Required]
         [StringLength(2147483647)]

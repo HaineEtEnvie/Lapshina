@@ -17,10 +17,6 @@ namespace Library.Infrastructure.ViewModels
 
         public string genre { get; set; }
 
-        public string writerfirstname { get; set; }
-
-        public string writesecondrname { get; set; }
-
-        public string writerlastname { get; set; }
+        public string writerfullname { get; set; }
     }
 }

@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace Library.Infrastructure.ViewModels
 {
-    public class ReadersViewModel
+    public class ExtraditionViewModel
     {
         public long id { get; set; }
 
-        public string fullname { get; set; }
+        public string data { get; set; }
 
-        public string phonenumber { get; set; }
+        public long idbook { get; set; }
 
-        public string adress { get; set; }
-
+        public long idreaders { get; set; }
     }
 }

@@ -21,19 +21,22 @@
                 <ColumnDefinition Width="3.5*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
-            <DataGrid Grid.Column="0" FontFamily="Arial" FontSize="14" VerticalContentAlignment="Bottom" Grid.Row="2" Grid.RowSpan="4"  CanUserResizeColumns="False" CanUserResizeRows="False" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" AutoGenerateColumns="False" CanUserReorderColumns="False"  x:Name="BookGrid" Margin="0,10,0,0">
+           <DataGrid Grid.Column="0" FontFamily="Arial" FontSize="14" VerticalContentAlignment="Bottom" Grid.Row="2" Grid.RowSpan="4"  CanUserResizeColumns="False" CanUserResizeRows="False" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" AutoGenerateColumns="False" CanUserReorderColumns="False"  x:Name="BookGrid" Margin="0,10,0,0" Style="{StaticResource Style2DataGrid}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="30" FontSize="14" FontFamily="Arial" x:Name="ID" Header="ID" Binding="{Binding id}" Visibility="Hidden" IsReadOnly="True"/>
                     <DataGridTextColumn  Width="*" FontSize="14" FontFamily="Arial"  x:Name="Bookname" Header="Название" Binding="{Binding name}" IsReadOnly="True"/>
                     <DataGridTextColumn  Width="*" FontSize="14" FontFamily="Arial"  x:Name="Publishinghouse" Header="Издательство" Binding="{Binding publishinghouse}" IsReadOnly="True"/>
                     <DataGridTextColumn  Width="*" FontSize="14" FontFamily="Arial"  x:Name="Genre" Header="Жанр" Binding="{Binding genre}" IsReadOnly="True"/>
-                    <DataGridTextColumn  Width="*" FontSize="14" FontFamily="Arial"  x:Name="Writerfirstname" Header="Фамилия" Binding="{Binding writerfirstname}" IsReadOnly="True"/>
-                    <DataGridTextColumn  Width="*" FontSize="14" FontFamily="Arial"  x:Name="Writesecondrname" Header="Имя" Binding="{Binding writesecondrname}" IsReadOnly="True"/>
-                    <DataGridTextColumn  Width="*" FontSize="14" FontFamily="Arial"  x:Name="Writerlastname" Header="Отчество" Binding="{Binding writerlastname}" IsReadOnly="True"/>
+                    <DataGridTextColumn  Width="*" FontSize="14" FontFamily="Arial"  x:Name="Writerfullname" Header="ФИО автора" Binding="{Binding writerfullname}" IsReadOnly="True"/>
                 </DataGrid.Columns>
             </DataGrid>
+            <Image x:Name="QRCode" Grid.Row="0" Grid.Column="0" Height="110" Width="110" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+            <Button x:Name="LogoutButton" HorizontalAlignment="Right" Grid.Column="1" VerticalAlignment="Top" Height="50" Width="150" Click="MenuPage_Click" Content="Главное меню" FontFamily="Arial" FontSize="14"/>
+            <Button x:Name="Search" HorizontalAlignment="Center" Width="150" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Click="SearchButton_Click" Content="Найти" FontFamily="Arial" FontSize="14" Height="32"/>
+            <Button x:Name="AddButton" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="150" Click="AddButton_Click" Grid.Column="1" Grid.Row="2" Content="Добавить" FontFamily="Arial" FontSize="14" Height="32"/>
+            <Button x:Name="DeleteButton" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150"  Click="DeleteButton_Click" Grid.Column="1" Grid.Row="3" Content="Удалить" FontFamily="Arial" FontSize="14" Height="32"/>
+            <Button x:Name="QRButton" HorizontalAlignment="Center" Width="150" VerticalAlignment="Center" Grid.Column="1" Grid.Row="4" Click="QRButton_Click" Content="QR код" FontFamily="Arial" FontSize="14" Height="32" Style="{StaticResource Style2Btn}"/>
+            <TextBox Grid.Row="1" FontSize="14" FontFamily="Arial" x:Name="ClientTextBox" VerticalContentAlignment="Bottom" Margin="0,25,0,72" Grid.RowSpan="2"/>
         </Grid>
     </DockPanel>
-
 </Page>
