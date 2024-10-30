@@ -1,11 +1,11 @@
-﻿<Window x:Class="Library.Windows.BookCardWindow"
+﻿<Window x:Class="Library.Windows.ExtraditionCardWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Library.Windows"
         mc:Ignorable="d"
-        Title="Карточка книги" Height="550" Width="500" MinHeight="550" MinWidth="500" MaxHeight="650" WindowStartupLocation="CenterScreen">
+            Title="Карточка выдачи" Height="550" Width="500" MinHeight="550" MinWidth="500" MaxHeight="650" WindowStartupLocation="CenterScreen">
     <DockPanel>
         <Grid Background="White">
             <Grid.RowDefinitions>
@@ -22,14 +22,12 @@
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Label Content="Название книги:" Grid.Row="1" FontWeight="Black" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <Label Content="Издательство:" Grid.Row="2" FontWeight="Black" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <Label Content="Жанр:" Grid.Row="3" FontWeight="Black" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <Label Content="ФИО Автора:" Grid.Row="4" FontWeight="Black" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <TextBox x:Name="Name" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="PublishingHouse" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" MaxLength="10" />
-            <TextBox x:Name="Genre" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="WriterFullName" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center"/>
+            <Label Content="Дата:" Grid.Row="1" FontWeight="Black" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+            <Label Content="Название книги:" Grid.Row="2" FontWeight="Black" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+            <Label Content="ФИО читателя:" Grid.Row="3" FontWeight="Black" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+            <TextBox x:Name="Data" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
+            <ComboBox x:Name="Name" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" DisplayMemberPath="name"/>
+            <ComboBox  x:Name="FullName" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" DisplayMemberPath="fullname"/>
             <Button x:Name="SaveButton" Grid.Column="1" Grid.Row="6" Width="150" VerticalAlignment="Center" Height="40" Content="Сохранить" FontFamily="Arial" FontSize="14" Click="SaveButton_Click"/>
             <Button x:Name="LogoutButton" Grid.Column="2" VerticalAlignment="Top" Width="150" Height="40" Content="К разделу" FontFamily="Arial" FontSize="14" Click="LogoutButton_Click"/>
         </Grid>

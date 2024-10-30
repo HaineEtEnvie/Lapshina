@@ -81,6 +81,7 @@
     <Compile Include="Mappers\ReadersMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadersEntity.cs" />
+    <Compile Include="Status\ExtraditionStatus.cs" />
     <Compile Include="ViewModels\BookViewModel.cs" />
     <Compile Include="ViewModels\ExtraditionViewModel.cs" />
     <Compile Include="ViewModels\ReadersViewModel.cs" />

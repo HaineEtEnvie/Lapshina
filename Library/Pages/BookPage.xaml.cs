@@ -47,7 +47,7 @@ namespace Library.Pages
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            var item = ClientTextBox.Text.ToString();
+            var item = ReadersTextBox.Text.ToString();
             if (item != "" || item == null)
             {
                 /*var search = _repository.Search(item);
@@ -90,7 +90,7 @@ namespace Library.Pages
             }
         }
 
-        private void ClientGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e) // двойной клик по DataGrid откроет карточку существующего клиента в бд
+        private void BookGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e) // двойной клик по DataGrid откроет карточку существующего клиента в бд
         {
             MainWindow mainWindow = (MainWindow)Window.GetWindow(this);
             var item = BookGrid.SelectedItem as BookViewModel;
@@ -102,7 +102,7 @@ namespace Library.Pages
             {
                 var id = item.id;
                 mainWindow.Hide();
-                var bookCard = new BookCardWindow(/*BookGrid.SelectedItem as BookViewModel*/);
+                var bookCard = new BookCardWindow(BookGrid.SelectedItem as BookViewModel);
                 bookCard.ShowDialog();
                 UpdateGrid();
                 mainWindow.Show();
