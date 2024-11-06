@@ -9,6 +9,8 @@ using System.Windows;
 using Library.Infrastructure.ViewModels;
 using Library.Infrastructure.Mappers;
 using System.Windows.Forms;
+using MessageBox = System.Windows.MessageBox;
+
 
 namespace Library.Infrastructure.DataBase
 {
@@ -107,15 +109,18 @@ namespace Library.Infrastructure.DataBase
             }
         }
 
-        /*public List<BookViewModel> Search(string search) // метод поиска существующей записи клиента в грид
+        public List<BookViewModel> Search(string search) // метод поиска существующей записи клиента в грид
         {
             search = search.Trim();
             using (var context = new Context())
             {
-                var result = context.Book.Where(x => x.name.Contains(search) && x.name.StartsWith(search) || x.publishinghouse.ToString().Contains(search)).ToList();
+                var result = context.Book.Where(x => x.name.Contains(search) && x.name.StartsWith(search) || 
+                x.publishinghouse.ToString().Contains(search) && x.publishinghouse.StartsWith(search) || 
+                x.genre.ToString().Contains(search) && x.genre.StartsWith(search) || 
+                x.writerfullname.ToString().Contains(search) && x.writerfullname.StartsWith(search)).ToList();
                 return BookMapper.Map(result);
             }
         }
-        */
+        
     }
 }

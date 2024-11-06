@@ -88,7 +88,6 @@ namespace Library.Infrastructure.DataBase
 
         public void Delete(long id) // метод удаления существующей записи клиента в бд
         {
-            // удаляем клиента
             using (var context = new Context())
             {
                 var user = context.Readers.FirstOrDefault(x => x.id == id);
@@ -100,15 +99,17 @@ namespace Library.Infrastructure.DataBase
             }
         }
 
-        /*public List<BookViewModel> Search(string search) // метод поиска существующей записи клиента в грид
+        public List<ReadersViewModel> Search(string search) // метод поиска существующей записи клиента в грид
         {
             search = search.Trim();
             using (var context = new Context())
             {
-                var result = context.Book.Where(x => x.name.Contains(search) && x.name.StartsWith(search) || x.publishinghouse.ToString().Contains(search)).ToList();
-                return BookMapper.Map(result);
+                var result = context.Readers.Where(x => x.fullname.Contains(search) && x.fullname.StartsWith(search) || 
+                x.phonenumber.ToString().Contains(search) || 
+                x.adress.ToString().Contains(search)).ToList();
+
+                return ReadersMapper.Map(result);
             }
         }
-        */
     }
 }

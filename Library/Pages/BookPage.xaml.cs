@@ -8,6 +8,7 @@ using System.Windows.Input;
 using Library.Infrastructure.DataBase;
 using Library.Infrastructure.ViewModels;
 using Library.Windows;
+using Library.Infrastructure.QR;
 
 
 namespace Library.Pages
@@ -17,6 +18,7 @@ namespace Library.Pages
     /// </summary>
     public partial class BookPage : Page
     {
+        private QRManager _qrgenerate;
         private BookRepository _repository;
         public BookPage()
         {
@@ -31,10 +33,8 @@ namespace Library.Pages
         }
         private void QRButton_Click(object sender, RoutedEventArgs e)
         {
-            /*
             var qrManager = new QRManager();
-            QRCode.Source = qrManager.Generate(ClientGrid.SelectedItem);
-            */
+            QRCode.Source = qrManager.Generate(BookGrid.SelectedItem);
         }
 
         private void MenuPage_Click(object sender, RoutedEventArgs e) // кнопка, которая при нажатии переходит в меню
@@ -50,9 +50,8 @@ namespace Library.Pages
             var item = ReadersTextBox.Text.ToString();
             if (item != "" || item == null)
             {
-                /*var search = _repository.Search(item);
+                var search = _repository.Search(item);
                 BookGrid.ItemsSource = search;
-                */
             }
             else
             {

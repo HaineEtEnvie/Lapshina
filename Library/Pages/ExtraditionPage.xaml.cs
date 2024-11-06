@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 using Library.Pages;
 using Library.Infrastructure;
 using Library.Infrastructure.Status;
+using Library.Infrastructure.QR;
 
 namespace Library.Pages
 {
@@ -26,47 +27,62 @@ namespace Library.Pages
     /// </summary>
     public partial class ExtraditionPage : Page
     {
-        private ExtraditionRepository _extraditionrepository;
-        private ReadersRepository _readersRepository;
-        private BookRepository _bookRepository;
+        public ExtraditionRepository _extraditionrepository;
+        public ReadersRepository _readersRepository;
+        public BookRepository _bookRepository;
+        List<string> _listCreate = new List<string> { "Все выдачи", "Старое", "Выдача за год", "Выдача за полгода" };
+
         public ExtraditionPage()
         {
             InitializeComponent();
             _extraditionrepository = new ExtraditionRepository();
             _readersRepository = new ReadersRepository();
             _bookRepository = new BookRepository();
-            UpdateGrid();
+            FastFilter.ItemsSource = _listCreate;
+            FastFilter.SelectedItem = _listCreate[0];
             GridNew();
-
         }
 
         public void GridNew()
         {
-            var notesList = _extraditionrepository.GetList();
-            var projectList = _readersRepository.GetList();
-            var scientsistList = _bookRepository.GetList();
-            var notesStatusList = notesList.Select(s => new ExtraditionStatus
+            var extraditionList = _extraditionrepository.GetList();
+            var readersList = _readersRepository.GetList();
+            var bookList = _bookRepository.GetList();
+            var extraditionStatusList = extraditionList.Select(s => new ExtraditionStatus
             {
                 Id = s.id,
                 Data = s.data,
-                Name = scientsistList.FirstOrDefault(p => p.id == s.idbook)?.name,
-                FullName = projectList.FirstOrDefault(x => x.id == s.idreaders)?.fullname,
+                Name = bookList.FirstOrDefault(p => p.id == s.idbook)?.name,
+                FullName = readersList.FirstOrDefault(x => x.id == s.idreaders)?.fullname,
 
             }).ToList();
-            
-        }
+            if (FastFilter.SelectedItem.ToString() == _listCreate[0])
+            {
+                ExtraditionGrid.ItemsSource = extraditionStatusList;
 
-        public void UpdateGrid() // обновление DataGrid в соответствии с бд
-        {
-            ExtraditionGrid.ItemsSource = _extraditionrepository.GetList();
+            }
+            else
+            {
+                if (FastFilter.SelectedItem.ToString() == _listCreate[1])
+                {
+                    ExtraditionGrid.ItemsSource = extraditionStatusList.Where(x => DateTime.Parse(x.Data) < DateTime.Today.AddYears(-1));
+                }
+                else if (FastFilter.SelectedItem.ToString() == _listCreate[2])
+                {
+                    ExtraditionGrid.ItemsSource = extraditionStatusList.Where(x => DateTime.Parse(x.Data) >= DateTime.Today.AddYears(-1) && DateTime.Parse(x.Data) <= DateTime.Today);
+                }
+                else
+                {
+                    ExtraditionGrid.ItemsSource = extraditionStatusList.Where(x => DateTime.Parse(x.Data) >= DateTime.Today.AddMonths(-6) && DateTime.Parse(x.Data) <= DateTime.Today);
+                }
+
+            }
         }
 
         private void QRButton_Click(object sender, RoutedEventArgs e)
         {
-            /*
             var qrManager = new QRManager();
-            QRCode.Source = qrManager.Generate(ClientGrid.SelectedItem);
-            */
+            QRCode.Source = qrManager.Generate(ExtraditionGrid.SelectedItem);
         }
 
         private void MenuPage_Click(object sender, RoutedEventArgs e) // кнопка, которая при нажатии переходит в меню
@@ -77,20 +93,7 @@ namespace Library.Pages
             mainWindow.MainFrame.Navigate(menuPage);
         }
 
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
-        {
-            var item = ExtraditionTextBox.Text.ToString();
-            if (item != "" || item == null)
-            {
-                /*var search = _repository.Search(item);
-                BookGrid.ItemsSource = search;
-                */
-            }
-            else
-            {
-                UpdateGrid();
-            }
-        }
+
 
         private void AddButton_Click(object sender, RoutedEventArgs e) // кнопка, которая при нажатии открывает карточку для добавления записи клиента в бд
         {
@@ -98,48 +101,53 @@ namespace Library.Pages
             mainWindow.Hide();
             var extraditionCard = new ExtraditionCardWindow(ExtraditionGrid.SelectedItem as ExtraditionStatus);
             extraditionCard.ShowDialog();
-            UpdateGrid();
+            GridNew();
+
             mainWindow.Show();
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            UpdateGrid();
+            GridNew();
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e) // кнопка, которая при нажатии удаляет запись клиента
         {
-            var item = ExtraditionGrid.SelectedItem as ExtraditionViewModel;
 
-            if (ExtraditionGrid.SelectedItem == null || item == null)
+            if (ExtraditionGrid.SelectedItem == null || !(ExtraditionGrid.SelectedItem is ExtraditionStatus _selecteditem))
             {
                 MessageBox.Show("Удаление не было произведено");
             }
             else
             {
-                _extraditionrepository.Delete(item.id);
-                UpdateGrid();
+                _extraditionrepository.Delete(_selecteditem.Id);
+                GridNew();
             }
         }
 
+        
         private void ExtraditionGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e) // двойной клик по DataGrid откроет карточку существующего клиента в бд
         {
             MainWindow mainWindow = (MainWindow)Window.GetWindow(this);
-            var item = ExtraditionGrid.SelectedItem as ExtraditionViewModel;
-            if (item == null)
+            var _selectedItem = ExtraditionGrid.SelectedItem;
+            if (_selectedItem == null)
             {
                 MessageBox.Show("Не жмякайте просто так)");
             }
             else
             {
-                var id = item.id;
                 mainWindow.Hide();
                 var extraditionCard = new ExtraditionCardWindow(ExtraditionGrid.SelectedItem as ExtraditionStatus);
                 extraditionCard.ShowDialog();
-                UpdateGrid();
+                GridNew();
                 mainWindow.Show();
             }
-            item = null;
         }
+        private void FastFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            GridNew();
+        }
+
     }
 }
+

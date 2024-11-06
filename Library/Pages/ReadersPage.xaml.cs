@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Library.Infrastructure.DataBase;
+using Library.Infrastructure.QR;
 using Library.Infrastructure.ViewModels;
 using Library.Windows;
 
@@ -37,10 +38,8 @@ namespace Library.Pages
         }
         private void QRButton_Click(object sender, RoutedEventArgs e)
         {
-            /*
             var qrManager = new QRManager();
-            QRCode.Source = qrManager.Generate(ClientGrid.SelectedItem);
-            */
+            QRCode.Source = qrManager.Generate(ReadersGrid.SelectedItem);
         }
 
         private void MenuPage_Click(object sender, RoutedEventArgs e) // кнопка, которая при нажатии переходит в меню
@@ -56,9 +55,8 @@ namespace Library.Pages
             var item = ReadersTextBox.Text.ToString();
             if (item != "" || item == null)
             {
-                /*var search = _repository.Search(item);
-                BookGrid.ItemsSource = search;
-                */
+                var search = _repository.Search(item);
+                ReadersGrid.ItemsSource = search;
             }
             else
             {

@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Library.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="650" d:DesignWidth="1000"
       Title="Книги">
     <DockPanel Width="750" Height="434">
         <Grid>
@@ -30,7 +30,7 @@
                     <DataGridTextColumn  Width="*" FontSize="14" FontFamily="Arial"  x:Name="Writerfullname" Header="ФИО автора" Binding="{Binding writerfullname}" IsReadOnly="True"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Image x:Name="QRCode" Grid.Row="0" Grid.Column="0" Height="110" Width="110" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+            <Image x:Name="QRCode" Grid.Row="0" Grid.Column="0" Height="142" Width="136" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="235,-72,0,0"/>
             <Button x:Name="LogoutButton" HorizontalAlignment="Right" Grid.Column="1" VerticalAlignment="Top" Height="50" Width="150" Click="MenuPage_Click" Content="Главное меню" FontFamily="Arial" FontSize="14"/>
             <Button x:Name="Search" HorizontalAlignment="Center" Width="150" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="1" Click="SearchButton_Click" Content="Найти" FontFamily="Arial" FontSize="14" Height="32"/>
             <Button x:Name="AddButton" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Width="150" Click="AddButton_Click" Grid.Column="1" Grid.Row="2" Content="Добавить" FontFamily="Arial" FontSize="14" Height="32"/>

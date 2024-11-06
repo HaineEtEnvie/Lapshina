@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Library"
         mc:Ignorable="d"
-        Title="Главное меню" WindowStartupLocation="CenterScreen" Height="450" MinHeight="450" Width="800" MaxHeight="550" MinWidth="800">
+        Title="Главное меню" WindowStartupLocation="CenterScreen" Height="650" Width="1000">
     <Grid>
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Source="/Pages/MenuPage.xaml"/>
         <StackPanel Orientation="Horizontal" Width="800" VerticalAlignment="Top" HorizontalAlignment="Center">
