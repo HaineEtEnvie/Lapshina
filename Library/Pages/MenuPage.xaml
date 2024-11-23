@@ -5,14 +5,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Library.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="650" d:DesignWidth="1000"
       Title="MenuPage">
 
     <Grid>
-        <Label Content="Library" HorizontalContentAlignment="Center"  HorizontalAlignment="Center" Margin="0,22,0,0" VerticalAlignment="Top" Height="49" Width="162"/>
-        <Button Content="Книги" HorizontalAlignment="Center" Margin="0,150,0,0" VerticalAlignment="Top" Height="45" Width="136" Click="Button_Book"/>
-        <Button Content="Читатели" HorizontalAlignment="Center" Margin="0,220,0,0" VerticalAlignment="Top" Height="45" Width="136" Click="Button_Readers"/>
-        <Button Content="Выдача" HorizontalAlignment="Center" Margin="0,290,0,0" VerticalAlignment="Top" Height="45" Width="136" Click="Button_Extradition"/>
-        
+        <Label Content="Library" HorizontalContentAlignment="Center" Margin="324,22,324,0" VerticalAlignment="Top" Height="65" FontSize="30"/>
+        <Button Content="Книги" Margin="400,116,400,0" VerticalAlignment="Top" Height="100" Click="Button_Book"/>
+        <Button Content="Читатели" Margin="400,250,400,0" VerticalAlignment="Top" Height="100" Click="Button_Readers"/>
+        <Button Content="Выдача" Margin="400,378,400,0" VerticalAlignment="Top" Height="100" Click="Button_Extradition"/>
+
     </Grid>
 </Page>

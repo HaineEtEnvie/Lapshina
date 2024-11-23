@@ -1,4 +1,5 @@
 ﻿using Library.Infrastructure.DataBase;
+using Library.Infrastructure.Status;
 using Library.Infrastructure.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
@@ -21,22 +23,22 @@ namespace Library.Windows
     /// </summary>
     public partial class ReadersCardWindow : Window
     {
-        private ReadersViewModel _selectedItem = null;
+        private ReadersStatus _selectedItem = null;
         private ReadersRepository _repository;
         public ReadersCardWindow()
         {
             InitializeComponent();
         }
 
-        public ReadersCardWindow(ReadersViewModel selectedItem)
+        public ReadersCardWindow(ReadersStatus selectedItem)
         {
             InitializeComponent();
             if (selectedItem != null)
             {
                 _selectedItem = selectedItem;
-                FullName.Text = selectedItem.fullname;
-                Phonenumber.Text = selectedItem.phonenumber;
-                Adress.Text = selectedItem.adress;
+                FullName.Text = selectedItem.Fullname;
+                Phonenumber.Text = selectedItem.Phonenumber;
+                Adress.Text = selectedItem.Adress;
             }
             else
             {
@@ -55,46 +57,52 @@ namespace Library.Windows
 
             try
             {
-                _repository = new ReadersRepository();
-                if (_selectedItem != null)
+                if (FullName.Text == "" || Phonenumber.Text == "" || Adress.Text == "")
                 {
-                    var entity = new ReadersViewModel
-                    {
-                        id = _selectedItem.id,
-                        fullname = FullName.Text,
-                        phonenumber = Phonenumber.Text,
-                        adress = Adress.Text,
-
-                    };
-                    if (_repository != null)
-                    {
-                        _repository.Update(entity);
-                        Window.GetWindow(this).Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Пусто");
-                    }
+                    MessageBox.Show("Заполните все поля");
                 }
                 else
                 {
-                    var entity = new ReadersViewModel
+                    _repository = new ReadersRepository();
+                    if (_selectedItem != null)
                     {
-                        fullname = FullName.Text,
-                        phonenumber = Phonenumber.Text,
-                        adress = Adress.Text,
-                    };
-                    if (_repository != null)
-                    {
-                        _repository.Add(entity);
-                        Window.GetWindow(this).Close();
+                        var entity = new ReadersViewModel
+                        {
+                            id = _selectedItem.Id,
+                            fullname = FullName.Text,
+                            phonenumber = Phonenumber.Text,
+                            adress = Adress.Text,
+                        };
+                        if (_repository != null)
+                        {
+                            _repository.Update(entity);
+                            Window.GetWindow(this).Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Пусто");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Пусто");
+                        var entity = new ReadersViewModel
+                        {
+                            fullname = FullName.Text,
+                            phonenumber = Phonenumber.Text,
+                            adress = Adress.Text,
+                        };
+                        if (_repository != null)
+                        {
+                            _repository.Add(entity);
+                            Window.GetWindow(this).Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Пусто");
+                        }
                     }
-                }
 
+                }
             }
             catch
             {

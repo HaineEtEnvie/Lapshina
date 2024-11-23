@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Library"
         mc:Ignorable="d"
+        Style="{StaticResource MaterialDesignWindow}"
         Title="Главное меню" WindowStartupLocation="CenterScreen" Height="650" Width="1000">
     <Grid>
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Source="/Pages/MenuPage.xaml"/>

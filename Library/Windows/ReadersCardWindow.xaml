@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Library.Windows"
         mc:Ignorable="d"
+        Style="{StaticResource MaterialDesignWindow}"
         Title="Карточка читателей" Height="550" Width="500" MinHeight="550" MinWidth="500" MaxHeight="650" WindowStartupLocation="CenterScreen">
     <DockPanel>
-        <Grid Background="White">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.3*"/>
                 <RowDefinition Height="0.1*"/>
@@ -26,7 +27,7 @@
             <Label Content="Номер телефона:" Grid.Row="2" FontWeight="Black" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right"/>
             <Label Content="Адрес:" Grid.Row="3" FontWeight="Black" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right"/>
             <TextBox x:Name="FullName" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="Phonenumber" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" MaxLength="10" />
+            <TextBox x:Name="Phonenumber" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"  />
             <TextBox x:Name="Adress" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"/>
             <Button x:Name="SaveButton" Grid.Column="1" Grid.Row="6" Width="150" VerticalAlignment="Center" Height="40" Content="Сохранить" FontFamily="Arial" FontSize="14" Click="SaveButton_Click"/>
             <Button x:Name="LogoutButton" Grid.Column="2" VerticalAlignment="Top" Width="150" Height="40" Content="К разделу" FontFamily="Arial" FontSize="14" Click="LogoutButton_Click"/>

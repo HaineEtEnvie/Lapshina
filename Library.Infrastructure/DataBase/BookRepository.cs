@@ -10,6 +10,7 @@ using Library.Infrastructure.ViewModels;
 using Library.Infrastructure.Mappers;
 using System.Windows.Forms;
 using MessageBox = System.Windows.MessageBox;
+using Library.Infrastructure.Status;
 
 
 namespace Library.Infrastructure.DataBase
@@ -109,7 +110,7 @@ namespace Library.Infrastructure.DataBase
             }
         }
 
-        public List<BookViewModel> Search(string search) // метод поиска существующей записи клиента в грид
+        public List<BookStatus> Search(string search) // метод поиска существующей записи клиента в грид
         {
             search = search.Trim();
             using (var context = new Context())

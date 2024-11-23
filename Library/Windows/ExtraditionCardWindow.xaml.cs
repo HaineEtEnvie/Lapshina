@@ -61,9 +61,9 @@ namespace Library.Windows
 
             try
             {
-                if (Name.Text == null || FullName.Text == null /*||!DateTime.TryParse(Date.Text, out var _) || Date.Text.Count() != 10*/)
+                if (Name.Text == null || FullName.Text == null ||!DateTime.TryParse(Data.Text, out var _) || Data.Text.Count() != 10)
                 {
-                    MessageBox.Show("Заполните все поля!");
+                    MessageBox.Show("Заполните правильно все поля!");
                 }
                 else
                 {

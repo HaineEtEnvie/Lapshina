@@ -4,10 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Library.Windows"
+        Style="{StaticResource MaterialDesignWindow}"
         mc:Ignorable="d"
             Title="Карточка выдачи" Height="550" Width="500" MinHeight="550" MinWidth="500" MaxHeight="650" WindowStartupLocation="CenterScreen">
     <DockPanel>
-        <Grid Background="White">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.3*"/>
                 <RowDefinition Height="0.1*"/>
@@ -25,7 +26,7 @@
             <Label Content="Дата:" Grid.Row="1" FontWeight="Black" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right"/>
             <Label Content="Название книги:" Grid.Row="2" FontWeight="Black" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right"/>
             <Label Content="ФИО читателя:" Grid.Row="3" FontWeight="Black" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <TextBox x:Name="Data" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
+            <TextBox x:Name="Data" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" MaxLength="10"/>
             <ComboBox x:Name="Name" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" DisplayMemberPath="name"/>
             <ComboBox  x:Name="FullName" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" DisplayMemberPath="fullname"/>
             <Button x:Name="SaveButton" Grid.Column="1" Grid.Row="6" Width="150" VerticalAlignment="Center" Height="40" Content="Сохранить" FontFamily="Arial" FontSize="14" Click="SaveButton_Click"/>

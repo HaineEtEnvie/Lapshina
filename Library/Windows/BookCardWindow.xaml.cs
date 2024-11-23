@@ -18,6 +18,8 @@ using Library.Pages;
 using Library.Infrastructure.Mappers;
 using Library.Infrastructure.DataBase;
 using Library.Windows;
+using System.Windows.Markup;
+using Library.Infrastructure.Status;
 
 namespace Library.Windows
 {
@@ -26,23 +28,23 @@ namespace Library.Windows
     /// </summary>
     public partial class BookCardWindow : Window
     {
-        private BookViewModel _selectedItem = null;
+        private BookStatus _selectedItem = null;
         private BookRepository _repository;
         public BookCardWindow()
         {
             InitializeComponent();
         }
 
-        public BookCardWindow(BookViewModel selectedItem)
+        public BookCardWindow(BookStatus selectedItem)
         {
             InitializeComponent();
             if (selectedItem != null)
             {
                 _selectedItem = selectedItem;
-                Name.Text = selectedItem.name;
-                PublishingHouse.Text = selectedItem.publishinghouse;
-                Genre.Text = selectedItem.genre;
-                WriterFullName.Text = selectedItem.writerfullname;
+                Name.Text = selectedItem.Name;
+                PublishingHouse.Text = selectedItem.Publishinghouse;
+                Genre.Text = selectedItem.Genre;
+                WriterFullName.Text = selectedItem.Writerfullname;
             }
             else
             {
@@ -62,12 +64,18 @@ namespace Library.Windows
 
             try
             {
-                _repository = new BookRepository();
+                if (Name.Text == "" || PublishingHouse.Text == "" || Genre.Text == "" || WriterFullName.Text == "")
+                {
+                    MessageBox.Show("Заполните все поля");
+                }
+                else
+                {
+                    _repository = new BookRepository();
                     if (_selectedItem != null)
                     {
                         var entity = new BookViewModel
                         {
-                            id = _selectedItem.id,
+                            id = _selectedItem.Id,
                             name = Name.Text,
                             publishinghouse = PublishingHouse.Text,
                             genre = Genre.Text,
@@ -104,6 +112,7 @@ namespace Library.Windows
                         }
                     }
 
+                }
             }
             catch
             {

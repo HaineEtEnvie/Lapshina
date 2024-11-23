@@ -9,28 +9,39 @@ using Library.Infrastructure.DataBase;
 using Library.Infrastructure.ViewModels;
 using Library.Windows;
 using Library.Infrastructure.QR;
+using System.Linq;
+using Library.Infrastructure.Status;
 
 
 namespace Library.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для BookPage.xaml
-    /// </summary>
     public partial class BookPage : Page
     {
         private QRManager _qrgenerate;
-        private BookRepository _repository;
+        public BookRepository _bookRepository;
         public BookPage()
         {
             InitializeComponent();
-            _repository = new BookRepository();
-            UpdateGrid();
+            _bookRepository = new BookRepository();
+            GridNew();
 
         }
-        public void UpdateGrid() // обновление DataGrid в соответствии с бд
+
+        public void GridNew()
         {
-            BookGrid.ItemsSource = _repository.GetList();
+            var bookList = _bookRepository.GetList();
+            var bookStatusList = bookList.Select(s => new BookStatus
+            {
+                Id = s.id,
+                Name = s.name,
+                Publishinghouse = s.publishinghouse,
+                Genre = s.genre,
+                Writerfullname = s.writerfullname,
+
+            }).ToList();
+                BookGrid.ItemsSource = bookStatusList;
         }
+
         private void QRButton_Click(object sender, RoutedEventArgs e)
         {
             var qrManager = new QRManager();
@@ -47,15 +58,15 @@ namespace Library.Pages
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            var item = ReadersTextBox.Text.ToString();
+            var item = BookTextBox.Text.ToString().Trim().ToLower();
             if (item != "" || item == null)
             {
-                var search = _repository.Search(item);
+                var search = _bookRepository.Search(item);
                 BookGrid.ItemsSource = search;
             }
             else
             {
-                UpdateGrid();
+                GridNew();
             }
         }
 
@@ -65,18 +76,18 @@ namespace Library.Pages
             mainWindow.Hide();
             var clientCard = new BookCardWindow();
             clientCard.ShowDialog();
-            UpdateGrid();
+            GridNew();
             mainWindow.Show();
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            UpdateGrid();
+            GridNew();
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e) // кнопка, которая при нажатии удаляет запись клиента
         {
-            var item = BookGrid.SelectedItem as BookViewModel;
+            var item = BookGrid.SelectedItem as BookStatus;
 
             if (BookGrid.SelectedItem == null || item == null)
             {
@@ -84,29 +95,27 @@ namespace Library.Pages
             }
             else
             {
-                _repository.Delete(item.id);
-                UpdateGrid();
+                _bookRepository.Delete(item.Id);
+                GridNew();
             }
         }
 
-        private void BookGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e) // двойной клик по DataGrid откроет карточку существующего клиента в бд
+        private void BookGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             MainWindow mainWindow = (MainWindow)Window.GetWindow(this);
-            var item = BookGrid.SelectedItem as BookViewModel;
-            if (item == null)
+            var _selectedItem = BookGrid.SelectedItem;
+            if (_selectedItem == null)
             {
-                MessageBox.Show("Не жмякайте просто так)");
+                MessageBox.Show("Нужно выбрать строку");
             }
             else
             {
-                var id = item.id;
                 mainWindow.Hide();
-                var bookCard = new BookCardWindow(BookGrid.SelectedItem as BookViewModel);
+                var bookCard = new BookCardWindow(_selectedItem as BookStatus);
                 bookCard.ShowDialog();
-                UpdateGrid();
+                GridNew();
                 mainWindow.Show();
             }
-            item = null;
         }
     }
 }

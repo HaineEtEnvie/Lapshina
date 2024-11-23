@@ -43,7 +43,7 @@ namespace Library.Infrastructure.DataBase
                 if (item != null)
                 {
                     item.fullname= entity.fullname;
-                    item.adress = entity.adress;
+                    item.phonenumber = entity.phonenumber;
                     item.adress = entity.adress;
                     context.SaveChanges();
                 }

@@ -119,7 +119,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QR\QRManager.cs" />
     <Compile Include="ReadersEntity.cs" />
+    <Compile Include="Status\BookStatus.cs" />
     <Compile Include="Status\ExtraditionStatus.cs" />
+    <Compile Include="Status\ReadersStatus.cs" />
     <Compile Include="ViewModels\BookViewModel.cs" />
     <Compile Include="ViewModels\ExtraditionViewModel.cs" />
     <Compile Include="ViewModels\ReadersViewModel.cs" />

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Library.Infrastructure.DataBase;
 using Library.Infrastructure.QR;
+using Library.Infrastructure.Status;
 using Library.Infrastructure.ViewModels;
 using Library.Windows;
 
@@ -24,18 +25,27 @@ namespace Library.Pages
     /// </summary>
     public partial class ReadersPage : Page
     {
-        private ReadersRepository _repository;
+        public ReadersRepository _readersRepository;
         public ReadersPage()
         {
             InitializeComponent();
-            _repository = new ReadersRepository();
-            UpdateGrid();
+            _readersRepository = new ReadersRepository();
+            GridNew();  
 
         }
-        public void UpdateGrid() // обновление DataGrid в соответствии с бд
+        public void GridNew()
         {
-            ReadersGrid.ItemsSource = _repository.GetList();
+            var readersList = _readersRepository.GetList();
+            var readersStatusList = readersList.Select(s => new ReadersStatus
+            {
+                Id = s.id,
+                Fullname = s.fullname,
+                Phonenumber = s.phonenumber,
+                Adress = s.adress,
+            }).ToList();
+            ReadersGrid.ItemsSource = readersStatusList;
         }
+
         private void QRButton_Click(object sender, RoutedEventArgs e)
         {
             var qrManager = new QRManager();
@@ -55,12 +65,12 @@ namespace Library.Pages
             var item = ReadersTextBox.Text.ToString();
             if (item != "" || item == null)
             {
-                var search = _repository.Search(item);
+                var search = _readersRepository.Search(item);
                 ReadersGrid.ItemsSource = search;
             }
             else
             {
-                UpdateGrid();
+                GridNew();
             }
         }
 
@@ -70,18 +80,18 @@ namespace Library.Pages
             mainWindow.Hide();
             var readersCard = new ReadersCardWindow();
             readersCard.ShowDialog();
-            UpdateGrid();
+            GridNew();
             mainWindow.Show();
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            UpdateGrid();
+            GridNew();
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e) // кнопка, которая при нажатии удаляет запись клиента
         {
-            var item = ReadersGrid.SelectedItem as ReadersViewModel;
+            var item = ReadersGrid.SelectedItem as ReadersStatus;
 
             if (ReadersGrid.SelectedItem == null || item == null)
             {
@@ -89,29 +99,27 @@ namespace Library.Pages
             }
             else
             {
-                _repository.Delete(item.id);
-                UpdateGrid();
+                _readersRepository.Delete(item.Id);
+                GridNew();
             }
         }
 
-        private void ReadersGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e) // двойной клик по DataGrid откроет карточку существующего клиента в бд
+        private void ReadersGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             MainWindow mainWindow = (MainWindow)Window.GetWindow(this);
-            var item = ReadersGrid.SelectedItem as ReadersViewModel;
-            if (item == null)
+            var _selectedItem = ReadersGrid.SelectedItem;
+            if (_selectedItem == null)
             {
-                MessageBox.Show("Не жмякайте просто так)");
+                MessageBox.Show("Нужно выбрать строку");
             }
             else
             {
-                var id = item.id;
                 mainWindow.Hide();
-                var readersCard = new ReadersCardWindow(ReadersGrid.SelectedItem as ReadersViewModel);
+                var readersCard = new ReadersCardWindow(_selectedItem as ReadersStatus);
                 readersCard.ShowDialog();
-                UpdateGrid();
+                GridNew();
                 mainWindow.Show();
             }
-            item = null;
         }
     }
 }

@@ -5,10 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Library.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="650" d:DesignWidth="1000"
       Title="Список выдачи">
 
-    <DockPanel Width="750" Height="434">
+    <DockPanel Width="1000" Height="650">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="85*"/>
@@ -30,12 +30,12 @@
                     <DataGridTextColumn  Width="*" FontSize="14" FontFamily="Arial"  x:Name="idreaders" Header="Фио Читателя" Binding="{Binding FullName}" IsReadOnly="True"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Image x:Name="QRCode" Grid.Row="0" Grid.Column="0" Height="110" Width="110" VerticalAlignment="Top" HorizontalAlignment="Center"/>
-            <ComboBox x:Name="FastFilter" HorizontalAlignment="Center" Foreground="Black" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" Height="25" Width="140" SelectionChanged="FastFilter_SelectionChanged"/>
-            <Button x:Name="LogoutButton" HorizontalAlignment="Right" Grid.Column="1" VerticalAlignment="Top" Height="50" Width="150" Click="MenuPage_Click" Content="Главное меню" FontFamily="Arial" FontSize="14"/>
-            <Button x:Name="AddButton" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Width="150" Click="AddButton_Click" Grid.Column="1" Grid.Row="2" Content="Добавить" FontFamily="Arial" FontSize="14" Height="32"/>
-            <Button x:Name="DeleteButton" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="150"  Click="DeleteButton_Click" Grid.Column="1" Grid.Row="3" Content="Удалить" FontFamily="Arial" FontSize="14" Height="32"/>
-            <Button x:Name="QRButton" HorizontalAlignment="Center" Width="150" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="4" Click="QRButton_Click" Content="QR код" FontFamily="Arial" FontSize="14" Height="32"/>
+            <Image x:Name="QRCode" Grid.Row="0" Grid.Column="0" Height="110" Width="110"/>
+            <ComboBox x:Name="FastFilter" HorizontalAlignment="Center" Foreground="White" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" Height="45" Width="165" SelectionChanged="FastFilter_SelectionChanged"/>
+            <Button x:Name="LogoutButton" HorizontalAlignment="Right" Grid.Column="1" VerticalAlignment="Top" Height="65" Width="192" Click="MenuPage_Click" Content="Главное меню" FontFamily="Arial" FontSize="14"/>
+            <Button x:Name="AddButton" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Width="165" Click="AddButton_Click" Grid.Column="1" Grid.Row="2" Content="Добавить" FontFamily="Arial" FontSize="14" Height="45"/>
+            <Button x:Name="DeleteButton" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="165"  Click="DeleteButton_Click" Grid.Column="1" Grid.Row="3" Content="Удалить" FontFamily="Arial" FontSize="14" Height="45"/>
+            <Button x:Name="QRButton" HorizontalAlignment="Center" Width="165" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="4" Click="QRButton_Click" Content="QR код" FontFamily="Arial" FontSize="14" Height="45"/>
         </Grid>
     </DockPanel>
 </Page>
